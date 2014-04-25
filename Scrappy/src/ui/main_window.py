@@ -9,5 +9,15 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         
-        # Set up UI using generated code from designer file.
-        Ui_MainWindow().setupUi(self)
+        # set up UI using generated code from designer file
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        
+        # handle save button click
+        self.ui.actionSave.triggered.connect(self._actionSaveTriggered)
+        
+    def _actionSaveTriggered(self):
+        """
+        Save the current document.
+        """
+        pass
