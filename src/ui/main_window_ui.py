@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/main_window.ui'
 #
-# Created: Fri Apr 25 12:13:22 2014
+# Created: Sun Apr 27 05:21:36 2014
 #      by: PyQt5 UI code generator 5.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,9 +29,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.scrollAreaWidgetContents)
-        self.plainTextEdit.setObjectName("plainTextEdit")
-        self.verticalLayout_3.addWidget(self.plainTextEdit)
+        self.textEdit = QtWidgets.QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit.setObjectName("textEdit")
+        self.verticalLayout_3.addWidget(self.textEdit)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_2.addWidget(self.scrollArea)
         MainWindow.setCentralWidget(self.centralwidget)

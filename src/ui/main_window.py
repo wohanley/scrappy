@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 from .main_window_ui import Ui_MainWindow
+from parse.nltk import extract_chunks
 
 class MainWindow(QtWidgets.QMainWindow):
     """
@@ -20,4 +21,4 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Save the current document.
         """
-        pass
+        extract_chunks(self.ui.textEdit.toPlainText())
