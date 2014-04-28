@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 from .main_window_ui import Ui_MainWindow
-from parse.nltk import extract_chunks
+from parse.nltk_scraps import ScrapExtracter
 
 class MainWindow(QtWidgets.QMainWindow):
     """
@@ -9,6 +9,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
+        
+        self._scrapExtracter = ScrapExtracter()
         
         # set up UI using generated code from designer file
         self.ui = Ui_MainWindow()
@@ -21,4 +23,4 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Save the current document.
         """
-        extract_chunks(self.ui.textEdit.toPlainText())
+        self._scrapExtracter.extract_scraps(self.ui.textEdit.toPlainText())
