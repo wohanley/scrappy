@@ -23,7 +23,7 @@ class ScrapExtracter:
         fully_tagged = izip(tokens, pos_iob_tags)
         lines = [' '.join([token, pos, iob]) for (token, (pos, iob)) in fully_tagged if iob]
         
-        chunk_tree = nltk.chunk.conllstr2tree('\n'.join(lines)) # step 4: build chunk parse tree
+        return nltk.chunk.conllstr2tree('\n'.join(lines)) # step 4: build chunk parse tree
     
 class IobTagger(nltk.tag.SequentialBackoffTagger):
     """
