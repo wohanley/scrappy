@@ -20,6 +20,7 @@ class ScrapExtracter:
         
         pos_iob_tags = self._iob_tagger.tag(pos_tags) # step 3: tag IOB chunks
         
+        # we need a string in CoNLL format, so a bit of finagling here
         fully_tagged = izip(tokens, pos_iob_tags)
         lines = [' '.join([token, pos, iob]) for (token, (pos, iob)) in fully_tagged if iob]
         
