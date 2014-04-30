@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 from .main_window_ui import Ui_MainWindow
-from parse.nltk_scraps import ScrapExtracter
+from scrappy.parse.nltk_scraps import ScrapExtracter
 
 class MainWindow(QtWidgets.QMainWindow):
     """
