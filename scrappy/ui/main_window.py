@@ -16,11 +16,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self._scrapExtracter = ScrapExtracter()
         
         # set up UI using generated code from designer file
-        ui = Ui_MainWindow()
-        ui.setupUi(self)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
         
         # handle save button click
-        ui.actionSave.triggered.connect(self._update_document)
+        self.ui.actionSave.triggered.connect(self._update_document)
         
     def _update_document(self):
         """
