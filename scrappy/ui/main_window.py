@@ -16,14 +16,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self._scrapExtracter = ScrapExtracter()
         
         # set up UI using generated code from designer file
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        self._ui = Ui_MainWindow()
+        self._ui.setupUi(self)
         
         # handle save button click
-        self.ui.actionSave.triggered.connect(self._update_document)
+        self._ui.actionSave.triggered.connect(self._update_document)
         
     def _update_document(self):
         """
         Add text in the editor to the document object.
         """
-        self._document.parse_tree = self._scrapExtracter.extract_scraps(self.ui.textEdit.toPlainText())
+        self._document.parse_tree = self._scrapExtracter.extract_scraps(self._ui.textEdit.toPlainText())
