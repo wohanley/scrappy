@@ -1,7 +1,8 @@
 from PyQt5 import QtWidgets
-from .main_window_ui import Ui_MainWindow
-from scrappy.parse.nltk_scraps import ScrapExtracter
+from main_window_ui import Ui_MainWindow
 from scrappy.document import Document
+from scrappy.parse.nltk_scraps import ScrapExtracter
+from scrappy.ui.highlight import highlight_chunks, YellowBackground
 
 class MainWindow(QtWidgets.QMainWindow):
     """
@@ -14,6 +15,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self._document = Document()
         self._scrapExtracter = ScrapExtracter()
+        self._highlight = highlight_chunks
         
         # set up UI using generated code from designer file
         self._ui = Ui_MainWindow()
@@ -27,3 +29,4 @@ class MainWindow(QtWidgets.QMainWindow):
         Add text in the editor to the document object.
         """
         self._document.parse_tree = self._scrapExtracter.extract_scraps(self._ui.textEdit.toPlainText())
+        self._highlight(self._ui.textEdit, self._document.parse_tree, YellowBackground())
