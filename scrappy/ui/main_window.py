@@ -28,5 +28,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Add text in the editor to the document object.
         """
-        self._document.parse_tree = self._scrapExtracter.extract_scraps(self._ui.textEdit.toPlainText())
-        self._highlight(self._ui.textEdit, self._document.parse_tree, YellowBackground())
+        self._document.parse_tree = (self._scrapExtracter
+            .extract_scraps(self._ui.textEdit.toPlainText()))
+        self._highlight(self._ui.textEdit, self._document.parse_tree,
+                        YellowBackground())
