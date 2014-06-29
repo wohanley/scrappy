@@ -1,5 +1,5 @@
 from PyQt5 import QtGui
-from scrappy.parse.nltk_scraps import tree_to_string
+from scrappy.parse.trees import tree_to_text
 
 def highlight_chunks(editor, tree, hl_format):
     """
@@ -14,7 +14,7 @@ def highlight_chunks(editor, tree, hl_format):
         
         for chunk in tree:
             # select the scrap
-            editor.find(tree_to_string(chunk))
+            editor.find(tree_to_text(chunk))
             # highlight the scrap
             editor.textCursor().mergeCharFormat(hl_format)
     finally:

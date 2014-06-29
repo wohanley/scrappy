@@ -58,14 +58,4 @@ class IobTagger(nltk.tag.SequentialBackoffTagger):
         (pos) to (pos, iob).
         """
         return self._chunker.tag(pos_tags)
-    
-def pick_tree(node, pick_tag, found=[]):
-    
-    if isinstance(node, nltk.tree.Tree):
-        for child in node:
-            pick_tree(child, pick_tag, found)
-    elif node.node == pick_tag:
-        found.push(node)
 
-def tree_to_string(tree):
-    ' '.join([node[0] for node in tree.flatten()])
