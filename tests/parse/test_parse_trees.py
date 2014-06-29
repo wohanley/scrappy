@@ -2,7 +2,6 @@ import unittest
 from mock import MagicMock
 import nltk
 from scrappy.parse.trees import tree_to_text
-from scrappy.parse.trees import pick_tree
 
 class TestTreeToText(unittest.TestCase):
 
