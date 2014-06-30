@@ -24,11 +24,6 @@ class TestTreeToText(unittest.TestCase):
         self.assertEqual("test value", result, "should return text from leaf")
 
 
-class MockNode():
-    
-    def __init__(self, tag, body):
-        self.node = tag
-
 class TestPickTree(unittest.TestCase):
     """
     Tests for the pick_tree function that I'm still not sure is needed.
