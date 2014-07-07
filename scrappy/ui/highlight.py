@@ -1,7 +1,6 @@
 from PyQt5 import QtGui
-from scrappy.parse.trees import tree_to_text
 
-def highlight_chunks(editor, tree, hl_format):
+def highlight_chunks(editor, scraps, hl_format):
     """
     Highlight text in editor according to the supplied parse tree.
     """
@@ -12,9 +11,9 @@ def highlight_chunks(editor, tree, hl_format):
     try:
         editor.moveCursor(QtGui.QTextCursor.Start)
         
-        for chunk in tree:
+        for scrap in scraps:
             # select the scrap
-            editor.find(tree_to_text(chunk))
+            editor.find(scrap)
             # highlight the scrap
             editor.textCursor().mergeCharFormat(hl_format)
     finally:

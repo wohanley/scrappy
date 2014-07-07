@@ -1,5 +1,7 @@
 import nltk
 from itertools import izip
+import os
+from scrappy.parse.trees import tree_to_text
 
 class ScrapExtracter:
     
@@ -12,21 +14,43 @@ class ScrapExtracter:
         chunks where possible, combined with any tokens that aren't
         part of any chunk, combined with whitespace.
         """
-        tokens = nltk.word_tokenize(text) # step 1: tokenize
-        tagged_tokens = nltk.pos_tag(tokens) # step 2: tag parts of speech
+        conll_sentences = [self._sentence_to_conll_string(sentence)
+                           for sentence in nltk.sent_tokenize(text)]
+        
+        return self._collect_scraps(conll_sentences)
+    
+    def _sentence_to_conll_string(self, sentence):
+        tokens = nltk.word_tokenize(sentence) # tokenize sentence
+        tagged_tokens = nltk.pos_tag(tokens) # tag parts of speech
         
         tokens = [(token) for (token, pos) in tagged_tokens]
         pos_tags = [(pos) for (token, pos) in tagged_tokens]
         
-        pos_iob_tags = self._iob_tagger.tag(pos_tags) # step 3: tag IOB chunks
+        pos_iob_tags = self._iob_tagger.tag(pos_tags) # tag IOB chunks
         
-        # we need a string in CoNLL format, so a bit of finagling here
+        # we need a string in CoNLL format, so a bit of finagling here.
+        # A CoNLL string looks like this:
+        # Word POS IOB
+        # Word POS IOB
+        # ...
         fully_tagged = izip(tokens, pos_iob_tags)
         lines = [' '.join([token, pos, iob])
                  for (token, (pos, iob)) in fully_tagged if iob]
         
-        # step 4: build chunk parse tree
-        return nltk.chunk.conllstr2tree('\n'.join(lines))
+        return os.linesep.join(lines)
+    
+    def _collect_scraps(self, conll_sentences):
+        
+        scraps = []
+        
+        for conll_sentence in conll_sentences:
+        # build chunk parse tree
+            tree = nltk.chunk.conllstr2tree('\n'.join(conll_sentences))
+            for chunk in tree:
+                scraps.append(tree_to_text(chunk))
+                
+        return scraps
+            
     
 class IobTagger(nltk.tag.SequentialBackoffTagger):
     """
