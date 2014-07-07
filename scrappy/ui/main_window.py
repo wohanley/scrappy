@@ -29,7 +29,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Sync text in the document with the parse tree.
         """
-        self._parse_tree = self._scrapExtracter.extract_scraps(
+        self._scraps = self._scrapExtracter.extract_scraps(
             self._ui.textEdit.toPlainText())
         self._update_document()
         
@@ -37,7 +37,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Update the document to reflect the parse tree.
         """
-        self._highlight(self._ui.textEdit, self._parse_tree,
+        self._highlight(self._ui.textEdit, self._scraps,
                         YellowBackground())
     
     def _save(self):
